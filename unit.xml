@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="5" skipped="0" failures="0" errors="0" time="0.778118" timestamp="2022-07-14T00:51:11-05:00" hostname="Williams-MacBook-Pro-2.local">
+<properties>
+<property name="seed" value="63252"/>
+</properties>
+<testcase classname="spec.controllers.dogs_controller_spec" name="DogsController#index displays recent dogs" file="./spec/controllers/dogs_controller_spec.rb" time="0.140213"></testcase>
+<testcase classname="spec.features.dog_resource_spec" name="Dog resource can create a profile" file="./spec/features/dog_resource_spec.rb" time="0.496009"></testcase>
+<testcase classname="spec.features.dog_resource_spec" name="Dog resource can edit a dog profile" file="./spec/features/dog_resource_spec.rb" time="0.043852"></testcase>
+<testcase classname="spec.features.dog_resource_spec" name="Dog resource can delete a dog profile" file="./spec/features/dog_resource_spec.rb" time="0.044552"></testcase>
+<testcase classname="spec.features.home_page_spec" name="Home page New user lands on site" file="./spec/features/home_page_spec.rb" time="0.050436"></testcase>
+</testsuite>

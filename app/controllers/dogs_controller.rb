@@ -1,10 +1,13 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
 
+  DOGS_PER_PAGE = 5
+
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.all
+    @page = params.fetch(:page, 0).to_i
+    @dogs = Dog.offset(@page * DOGS_PER_PAGE).limit(DOGS_PER_PAGE)
   end
 
   # GET /dogs/1
