@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update]
 
   DOGS_PER_PAGE = 5
 
@@ -27,7 +28,7 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
-    @dog = Dog.new(dog_params)
+    @dog = Dog.new(dog_params.merge({user: current_user}))
 
     respond_to do |format|
       if @dog.save
@@ -45,15 +46,17 @@ class DogsController < ApplicationController
   # PATCH/PUT /dogs/1
   # PATCH/PUT /dogs/1.json
   def update
-    respond_to do |format|
-      if @dog.update(dog_params)
-        @dog.images.attach(params[:dog][:image]) if params[:dog][:image].present?
+    if current_user == @dog.user
+      respond_to do |format|
+        if @dog.update(dog_params)
+          @dog.images.attach(params[:dog][:image]) if params[:dog][:image].present?
 
-        format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dog }
-      else
-        format.html { render :edit }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
+          format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
+          format.json { render :show, status: :ok, location: @dog }
+        else
+          format.html { render :edit }
+          format.json { render json: @dog.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

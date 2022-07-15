@@ -1,2 +1,6 @@
 <h1>Add Your Dog</h1>
-<%= render partial: 'form' %>
+<% if current_user %>
+  <%= render partial: 'form' %>
+<% else %>
+  <div>You must be logged in to add a new dog.</div>
+<% end %>
