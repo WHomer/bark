@@ -1,5 +1,10 @@
 <%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
 
+<% if @dogs.length == 0 %>
+  <div>No More dogs to show.</div>
+  <br>
+<% end %>
+
 <div class="pagination">
   <% if @page > 0 %>
     <%= link_to "Previous", dogs_path(page: @page - 1) %>

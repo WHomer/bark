@@ -1,3 +1,10 @@
+<%# display an ad every two dogs %>
+<% if dog_counter != 0 && dog_counter % 2 == 0 %>
+  <article>
+    <img src="./assets/ad.jpg" alt="advertisement" class="dog-photo">
+  </article>
+<% end %>
+
 <a href="<%= url_for(dog) %>">
   <article>
     <h2 class="dog-name"><%= dog.name %></h2>
