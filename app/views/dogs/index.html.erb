@@ -1,3 +1,5 @@
+<%= link_to "Sort Recently Liked", dogs_path(sort: :recent_likes) %>
+
 <%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
 
 <% if @dogs.length == 0 %>
@@ -12,7 +14,7 @@
     Previous
   <% end %>
 
-  <% if @dogs.count != 0 %>
+  <% if @dogs.length != 0 %>
     <%= link_to "Next", dogs_path(page: @page + 1) %>
   <% else %>
     Next

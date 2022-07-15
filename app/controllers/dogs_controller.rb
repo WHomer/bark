@@ -8,7 +8,12 @@ class DogsController < ApplicationController
   # GET /dogs.json
   def index
     @page = params.fetch(:page, 0).to_i
-    @dogs = Dog.offset(@page * DOGS_PER_PAGE).limit(DOGS_PER_PAGE)
+
+    if params["sort"] == "recent_likes"
+      @dogs = Dog.order_by_recent_likes.offset(@page * DOGS_PER_PAGE).limit(DOGS_PER_PAGE)
+    else
+      @dogs = Dog.offset(@page * DOGS_PER_PAGE).limit(DOGS_PER_PAGE)
+    end
   end
 
   # GET /dogs/1
